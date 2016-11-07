@@ -1,30 +1,13 @@
-function calculate(action, ...values) {
-    var total = 0;
+function totalLength(x: (string | any[]), y: (string | any[])): number {
+    var total: number = x.length + y.length;
 
-    for (var value of values) {
-        switch (action) {
-            case 'add':
-                total += value;
-                break;
+    if (x instanceof Array) {
+        x.push('abc');
+    };
 
-            case 'subtract':
-                total -= value;
-                break;
-        }
+    if (x instanceof String) {
+        x.substr(1);
     };
 
     return total;
-};
-
-console.log(calculate('subtract', 1, 2, 3, 4, 5));
-
-var source = [3, 4, 5];
-var target = [1, 2, ...source, 6, 7];
-
-var list = [1, 2, 3];
-var toAdd = [4, 5, 6];
-
-list.push(...toAdd);
-
-console.log(target);
-console.log(list);
+}

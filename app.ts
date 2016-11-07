@@ -1,16 +1,8 @@
-interface Todo {
-    name: string;
-    state: TodoState;
+var todo: { name: string };
+
+todo = { age: 41 };
+
+function totalLength(x: { length: number }, y: { length: number }): number {
+    var total: number = x.length + y.length;
+    return total;
 }
-
-var todo: Todo = {
-    name: "Pick up drycleaning",
-    state: TodoState.New
-};
-
-enum TodoState {
-    New = 1,
-    Active,
-    Complete,
-    Deleted
-};

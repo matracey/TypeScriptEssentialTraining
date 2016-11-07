@@ -1,32 +1,14 @@
+// var, let & const
+
+// var: not contained within block scopes in JS.
+// let: contained within the block scope of the below loop.
+// const: contained wihtin the scope, and cannot be changed. 
+
 var container = document.getElementById('container');
 
-var todos = [
-    {
-        id: 123,
-        name: "Pick up drycleaning",
-        completed: true
-    },
-    {
-        id: 124,
-        name: "Iron shirt",
-        completed: false
-    },
-    {
-        id: 125,
-        name: "Wash hair",
-        completed: false
-    },
-]
-
-var innerHtml: string = "";
-
-for (let t of todos) {
-    innerHtml = innerHtml.concat(`
-    <div todo='${t.id}' class="list-group-item">
-        <i class="${t.completed ? "" : "hidden"} text-success glyphicon glyphicon-ok"></i>
-        <span class="name">${t.name}</span>
-    </div>
-    `);
+for (var x = 0; x <= 5; x++) {
+    const counter = x;
+    counter = 1;
 }
 
-container.innerHTML = innerHtml;
+console.log(counter);

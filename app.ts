@@ -28,3 +28,31 @@ enum TodoState {
     Complete,
     Deleted
 }
+
+var todo = {
+    name: "Pick up drycleaning",
+}
+
+class SmartTodo {
+    _state: TodoState
+
+    _name: string;
+
+    constructor(name: string) {
+        this._name = name;
+    }
+
+    get state() {
+        return this._state;
+    }
+
+    set state(newState: TodoState) {
+        if (newState == TodoState.Complete) {
+            var canBeCompleted = (this.state == TodoState.Active || this.state == TodoState.Deleted)
+            if (!canBeCompleted) {
+                throw "Todo must be Active or Deleted in order to be marked Completed. "
+            }
+        }
+        this._state = newState;
+    }
+}

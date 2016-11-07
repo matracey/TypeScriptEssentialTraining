@@ -1,14 +1,16 @@
-// var, let & const
+var array = [
+    "Pick up drycleaning",
+    "Clean Batcave",
+    "Save Gotham"
+];
 
-// var: not contained within block scopes in JS.
-// let: contained within the block scope of the below loop.
-// const: contained wihtin the scope, and cannot be changed. 
-
-var container = document.getElementById('container');
-
-for (var x = 0; x <= 5; x++) {
-    const counter = x;
-    counter = 1;
+// TypeScript: forof
+for (let value of array) {
+    console.log(`${value}`);
 }
 
-console.log(counter);
+// Classic JS: forin
+// for (var index in array) {
+//     var value = array[index];
+//     console.log(`${index}: ${value}`);
+// }

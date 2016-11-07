@@ -1,16 +1,17 @@
-var array = [
-    "Pick up drycleaning",
-    "Clean Batcave",
-    "Save Gotham"
-];
+var container = document.getElementById('container');
 
-// TypeScript: forof
-for (let value of array) {
-    console.log(`${value}`);
-}
+function Counter(el) {
+    this.count = 0;
+    el.innerHTML = this.count;
 
-// Classic JS: forin
-// for (var index in array) {
-//     var value = array[index];
-//     console.log(`${index}: ${value}`);
-// }
+    el.addEventListener('click',
+        () => {
+            this.count += 1;
+            el.innerHTML = this.count;
+        });
+};
+
+new Counter(container);
+
+var filtered = [1, 2, 3].filter(x => x > 0);
+console.log(filtered);

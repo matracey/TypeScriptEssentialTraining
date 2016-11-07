@@ -1,43 +1,16 @@
-var $ = <jQuery>function(selector: string) {
-    // find DOM element
-}
-
-$.version = 1.18;
-
 interface Todo {
     name: string;
-    completed?: boolean;
+    state: TodoState;
 }
 
-interface jQuery {
-    (selector: (string | any)): jQueryElement;
-    fn: any;
-    version: number;
-}
+var todo: Todo = {
+    name: "Pick up drycleaning",
+    state: TodoState.New
+};
 
-interface jQueryElement {
-    data(name: string): any;
-    data(name: string, data: any): jQueryElement;
-}
-
-interface jQueryElement {
-    todo(): Todo;
-    todo(todo: Todo): jQueryElement;
-}
-
-$.fn.todo = function(todo?: Todo): Todo {
-    if (todo) {
-        $(this).data('todo', todo);
-    } else {
-        return $(this).data('todo');
-    }
-}
-
-var todo = { name: "Pick up drycleaning" };
-var container = $('container');
-
-//container.data('todo', todo);
-//var savedTodo = container.data('todo');
-
-container.todo(todo);
-var savedTodo = container.todo();
+enum TodoState {
+    New = 1,
+    Active,
+    Complete,
+    Deleted
+};

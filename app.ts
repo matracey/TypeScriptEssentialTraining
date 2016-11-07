@@ -1,17 +1,18 @@
-var container = document.getElementById('container');
+function getTodo() {
+    return {
+        id: 123,
+        title: "Pick up drycleaning",
+        completed: false
+    };
+}
 
-function Counter(el) {
-    this.count = 0;
-    el.innerHTML = this.count;
+var {id: myId, title, completed} = getTodo();
 
-    el.addEventListener('click',
-        () => {
-            this.count += 1;
-            el.innerHTML = this.count;
-        });
-};
+console.log(myId, title, completed);
 
-new Counter(container);
-
-var filtered = [1, 2, 3].filter(x => x > 0);
-console.log(filtered);
+function countdown({initial, final: final = 0, interval: interval = 1, initial: current}) {
+    while (current > final) {
+        console.log(current);
+        current -= interval;
+    }
+}

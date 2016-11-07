@@ -1,8 +1,20 @@
-var todo: { name: string };
+class TodoService {
+    constructor(private todos: Todo[]) {
+    }
 
-todo = { age: 41 };
+    getAll() {
+        return this.todos;
+    }
+}
 
-function totalLength(x: { length: number }, y: { length: number }): number {
-    var total: number = x.length + y.length;
-    return total;
+interface Todo {
+    name: string;
+    state: TodoState;
+}
+
+enum TodoState {
+    New = 1,
+    Active,
+    Complete,
+    Deleted
 }

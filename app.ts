@@ -1,9 +1,19 @@
 class TodoService {
+    static lastId: number = 0;
+
     constructor(private todos: Todo[]) {
     }
 
-    getAll() {
+    add(todo: Todo): void {
+        var newId = TodoService.getNextId();
+    }
+
+    getAll(): Todo[] {
         return this.todos;
+    }
+
+    static getNextId(): number {
+        return TodoService.lastId += 1;
     }
 }
 

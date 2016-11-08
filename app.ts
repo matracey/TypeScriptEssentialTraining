@@ -1,22 +1,3 @@
-class TodoService {
-    static lastId: number = 0;
-
-    constructor(private todos: Todo[]) {
-    }
-
-    add(todo: Todo): void {
-        var newId = TodoService.getNextId();
-    }
-
-    getAll(): Todo[] {
-        return this.todos;
-    }
-
-    static getNextId(): number {
-        return TodoService.lastId += 1;
-    }
-}
-
 interface Todo {
     name: string;
     state: TodoState;
@@ -29,41 +10,38 @@ enum TodoState {
     Deleted
 }
 
-var todo = {
-    name: "Pick up drycleaning",
+class TodoService {
+    private static _lastId: number = 0;
+
+    private get nextId(): number {
+        return TodoService.getNextId();
+    }
+
+    private set nextId(nextId: number) {
+        TodoService._lastId = nextId - 1;
+    }
+
+    constructor(private _todos: Todo[]) {
+    }
+
+    add(todo: Todo): void {
+        var newId = TodoService.getNextId();
+    }
+
+    private getAll(): Todo[] {
+        return this._todos;
+    }
+
+    static getNextId(): number {
+        return TodoService._lastId += 1;
+    }
 }
 
-class SmartTodo {
-    _state: TodoState
-
-    _name: string;
-
-    constructor(name: string) {
-        this._name = name;
+abstract class TodoStateChanger {
+    constructor(protected newState: TodoState) {
     }
 
-    get state() {
-        return this._state;
-    }
-
-    set state(newState: TodoState) {
-        if (newState == TodoState.Complete) {
-            var canBeCompleted = (this.state == TodoState.Active || this.state == TodoState.Deleted)
-            if (!canBeCompleted) {
-                throw "Todo must be Active or Deleted in order to be marked Completed. "
-            }
-        }
-        this._state = newState;
-    }
-}
-
-class TodoStateChanger {
-    constructor(private newState: TodoState) {
-    }
-
-    canChangeState(todo: Todo): boolean {
-        return !!todo;
-    }
+    abstract canChangeState(todo: Todo): boolean;
 
     changeState(todo: Todo): Todo {
         if (this.canChangeState(todo)) {
@@ -80,9 +58,14 @@ class CompleteTodoStateChanger extends TodoStateChanger {
     }
 
     canChangeState(todo: Todo): boolean {
-        return super.canChangeState(todo) && (
+        return (
             todo.state == TodoState.Active ||
             todo.state == TodoState.Deleted
         );
+    }
+}
+
+class SmartTodo {
+    constructor(public name: string) {
     }
 }

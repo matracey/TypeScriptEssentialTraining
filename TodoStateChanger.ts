@@ -1,3 +1,5 @@
+import { Todo, TodoState } from './model'
+
 abstract class TodoStateChanger {
     constructor(protected newState: TodoState) {
     }

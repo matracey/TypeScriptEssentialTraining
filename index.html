@@ -9,7 +9,14 @@
 <body>
     <div id="container" class="container">
     </div>
-    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.40/system.js"></script>
+    <script>
+
+        System.defaultJSExtensions = true;
+
+        System.import('app');
+
+    </script>
 </body>
 
 </html>

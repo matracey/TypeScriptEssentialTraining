@@ -1,5 +1,4 @@
-import Model = require('./model');
-import Todo = Model.Todo;
+import { Todo } from './model'
 
 let _lastId: number = 0;
 
@@ -14,7 +13,7 @@ export interface ITodoService {
     getById(todoId: number): Todo;
 }
 
-class TodoService implements ITodoService {
+export class TodoService implements ITodoService {
     constructor(private _todos: Todo[]) { }
 
     add(todo: Todo): Todo {
